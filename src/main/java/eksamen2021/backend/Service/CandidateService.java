@@ -37,6 +37,7 @@ public class CandidateService {
         Candidate tmpCandidate = candidateRepository.findById(id).orElseThrow(() -> new NoResultException("Candidate with id: " + id + " does not exist!"));
         tmpCandidate.setCandidateId(candidate.getCandidateId());
         tmpCandidate.setCandidateName(candidate.getCandidateName());
+        tmpCandidate.setParty(candidate.getParty());
 
         return candidateRepository.save(tmpCandidate);
     }
