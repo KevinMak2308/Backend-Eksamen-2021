@@ -33,6 +33,7 @@ public class PartyController {
     @GetMapping("/allParties")
     public ResponseEntity<List<Party>> readAllParties() {
         List<Party> parties = partyService.findAllParty();
+        partyService.calculatePartyVoteToPercentage();
         return new ResponseEntity<>(parties, HttpStatus.OK);
     }
 

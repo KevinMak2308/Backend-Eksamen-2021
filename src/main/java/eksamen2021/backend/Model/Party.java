@@ -27,6 +27,12 @@ public class Party {
     @Column(name = "party_name")
     private String partyName;
 
+    @Column(name = "party_vote")
+    private Double partyVote;
+
+    @Column(name = "party_vote_percentage")
+    private Double partyVotePercentage;
+
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "party_id")
     @JsonBackReference

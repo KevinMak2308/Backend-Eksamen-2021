@@ -39,7 +39,7 @@ public class PartyService {
         Party tmpParty = partyRepository.findById(id).orElseThrow(() -> new NoResultException("Party with id: " + id + " does not exist!"));
         tmpParty.setPartyId(party.getPartyId());
         tmpParty.setPartyName(party.getPartyName());
-
+        tmpParty.setPartyVote(party.getPartyVote());
         return partyRepository.save(tmpParty);
     }
 
@@ -48,10 +48,28 @@ public class PartyService {
         partyRepository.deleteById(id);
     }
 
-
     public Set<Candidate> findAllCandidatesOnParty(Integer id){
         Party tmpParty = partyRepository.findById(id).orElseThrow(()-> new NoResultException("Party with id: " + id + " was not found"));
         Set<Candidate> candidates = tmpParty.getCandidateSet();
         return candidates;
+    }
+
+    public void calculatePartyVoteToPercentage() {
+        List<Party> partyList = partyRepository.findAll();
+        Integer allVotes = 2568;
+
+        for (int i = 0; i < partyList.size() ; i++) {
+            Party tmpParty = partyList.get(i);
+
+            Double vote = tmpParty.getPartyVote();
+
+            Double votePercentage = vote / allVotes * 100;
+
+            tmpParty.setPartyVotePercentage(votePercentage);
+
+            partyRepository.save(tmpParty);
+        }
+
+
     }
 }
