@@ -37,7 +37,7 @@ public class Party {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Party party = (Party) o;
-        return partyId.equals(party.partyId);
+        return Objects.equals(partyId, party.partyId);
     }
 
     @Override

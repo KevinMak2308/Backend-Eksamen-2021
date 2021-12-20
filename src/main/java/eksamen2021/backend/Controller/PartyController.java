@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -27,6 +28,12 @@ public class PartyController {
     public ResponseEntity<Party> readParty(@PathVariable Integer id) {
         Party party = partyService.findById(id);
         return new ResponseEntity<>(party, HttpStatus.OK);
+    }
+
+    @GetMapping("/allParties")
+    public ResponseEntity<List<Party>> readAllParties() {
+        List<Party> parties = partyService.findAllParty();
+        return new ResponseEntity<>(parties, HttpStatus.OK);
     }
 
     @GetMapping("/partyCandidates/{id}")

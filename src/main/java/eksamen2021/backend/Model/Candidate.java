@@ -33,7 +33,7 @@ public class Candidate {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Candidate candidate = (Candidate) o;
-        return candidateId.equals(candidate.candidateId);
+        return Objects.equals(candidateId, candidate.candidateId);
     }
 
     @Override
